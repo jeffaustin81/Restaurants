@@ -114,5 +114,21 @@
 
             $this->assertEquals("Italian", $test_Cuisine->getType());
         }
+
+        function test_delete()
+        {
+            $type = "Mexican";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $type2 = "Italian";
+            $test_cuisine2 = new Cuisine($type2, $id);
+            $test_cuisine2->save();
+
+            $test_cuisine->delete();
+
+            $this->assertEquals([$test_cuisine2], Cuisine::getAll());
+        }
     }
  ?>
