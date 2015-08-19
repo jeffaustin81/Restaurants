@@ -156,12 +156,17 @@
             $this->assertEquals($cuisine_id, $result);
         }
 
-        function test_updateName()
+        function test_update()
         {
             $type = "Thai";
             $id = null;
             $test_Cuisine = new Cuisine($type, $id);
             $test_Cuisine->save();
+
+            $type2 = "Bar";
+            $id = null;
+            $test_Cuisine2 = new Cuisine($type2, $id);
+            $test_Cuisine2->save();
 
             $name = "Pok Pok";
             $phone = "555-456-2345";
@@ -169,11 +174,17 @@
             $website = "http://www.helloworld.com";
             $cuisine_id = $test_Cuisine->getId();
             $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
             $new_name = "Whiskey Soda Lounge";
+            $new_phone = "555-555-5555";
+            $new_address = "678 DEF street";
+            $new_website = "http://www.pokpok.com";
+            $new_cuisine_id = $test_Cuisine2->getId();
+            $new_Restaurant = new Restaurant($new_name, $id, $new_phone, $new_address, $new_website, $new_cuisine_id);
 
-            $test_Restaurant->updateName();
+            $test_Restaurant->update($new_name, $id, $new_phone, $new_address, $new_website, $new_cuisine_id);
 
-            $this->assertEquals($new_name, $test_Restaurant->getName());
+            $this->assertEquals($new_Restaurant, $test_Restaurant);
         }
     }
 ?>
