@@ -51,7 +51,19 @@
         $cuisine = Cuisine::find($_GET['cuisine_id']);
         return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants(), 'form_check' => true));
     });
-    
+
+    $app->post("/add_restaurant", function() use ($app) {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $website = $_POST['website'];
+        $cuisine_id = $_POST['cuisine_id'];
+        $restaurant = new Restaurant($name, $id = null, $phone, $address, $website, $cuisine_id);
+        $restaurant->save();
+
+        $cuisine = Cuisine::find($cuisine_id);
+        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants(), 'form_check' => false));
+    });         
 
     return $app;
 ?>
