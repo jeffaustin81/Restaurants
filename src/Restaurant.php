@@ -80,6 +80,11 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getId()};");
+        }
+
         function update($new_name, $id, $new_phone, $new_address, $new_website, $new_cuisine_id)
         {
             $GLOBALS['DB']->exec("UPDATE restaurants SET name = '{new_name}', phone = '{new_phone}', address = '{new_address}', website = '{new_website}', cuisine_id = {new_cuisine_id} WHERE id = {$this->getId()};");
