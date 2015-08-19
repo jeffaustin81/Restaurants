@@ -85,5 +85,34 @@
 
             $this->assertEquals([], $result);
         }
+
+        function test_find()
+        {
+            $type = "Mexican";
+            $type2 = "Italian";
+            $test_Cuisine = new Cuisine($type);
+            $test_Cuisine->save();
+            $test_Cuisine2 = new Cuisine($type2);
+            $test_Cuisine2->save();
+
+
+            $result = Cuisine::find($test_Cuisine->getId());
+
+            $this->assertEquals($test_Cuisine, $result);
+        }
+
+        function test_update()
+        {
+            $type = "Mexican";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $new_type = "Italian";
+
+            $test_Cuisine->update($new_type);
+
+            $this->assertEquals("Italian", $test_Cuisine->getType());
+        }
     }
  ?>
