@@ -28,7 +28,7 @@
             $test_Cuisine = new Cuisine($type, $id);
             $test_Cuisine->save();
 
-            $name = "Home stuff";
+            $name = "Pok Pok";
             $phone = "555-456-2345";
             $address = "123 abcd street";
             $website = "http://www.helloworld.com";
@@ -40,6 +40,120 @@
             //Assert
             $result = Restaurant::getAll();
             $this->assertEquals($test_Restaurant, $result[0]);
+        }
+
+        function test_getName()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
+            $result = $test_Restaurant->getName();
+
+            $this->assertEquals($name, $result);
+        }
+
+        function test_getId()
+        {
+            $type = "Thai";
+            $id = 1;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
+            $result = $test_Restaurant->getId();
+
+            $this->assertEquals(true, is_numeric($result));
+        }
+
+        function test_getPhone()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
+            $result = $test_Restaurant->getPhone();
+
+            $this->assertEquals($phone, $result);
+        }
+
+        function test_getAddress()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
+            $result = $test_Restaurant->getAddress();
+
+            $this->assertEquals($address, $result);
+        }
+
+        function test_getWebsite()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
+            $result = $test_Restaurant->getWebsite();
+
+            $this->assertEquals($website, $result);
+        }
+
+        function test_getCuisineId()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+
+            $result = $test_Restaurant->getCuisineId();
+
+            $this->assertEquals($cuisine_id, $result);
         }
     }
 ?>
