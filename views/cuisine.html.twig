@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Restaurants</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>{{ cuisine.getType }}</h1>
+
+            {% if restaurants is not empty %}
+                <h4>List of restaurants:</h4>
+                    {% for restaurant in restaurants %}
+                        <li><strong><a href="/restaurants/{{ restaurant.getId }}">{{ restaurant.getName }}</a></strong></li>
+                    {% endfor %}
+            {% else %}
+                <h3>There are no restaurants for {{ cuisine.getType }} cuisine yet!</h3>
+            {% endif %}
+
+            <form action="/form_restaurant">
+                <form action="/form_cuisine">
+                    <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
+                    <button type="submit" class="btn btn-info">Add new restaurant</button>
+                </form>
+
+            {% if form_check == true %}
+                <form action="/add_restaurant" method="post">
+                    <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
+                    <h4>Enter information about the restaurant</h4>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Restaurant Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" name="phone" class="form-control" type="text" placeholder="Restaurant Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input id="address" name="address" class="form-control" type="text" placeholder="Restaurant Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input id="website" name="website" class="form-control" type="text" placeholder="Restaurant URL">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add restaurant</button>
+                </form>
+            {% endif %}
+            <form action="/">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </form>
+        </div>
+    </body>
+</html>

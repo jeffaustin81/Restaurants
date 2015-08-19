@@ -47,7 +47,7 @@
         function getRestaurants()
         {
             $restaurants = array();
-            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()};");
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()} ORDER BY name;");
             foreach($returned_restaurants as $restaurant) {
                 $name = $restaurant['name'];
                 $id = $restaurant['id'];
@@ -63,7 +63,7 @@
 
         static function getAll()
         {
-            $returned_cuisines = $GLOBALS['DB']->query("SELECT * from cuisines;");
+            $returned_cuisines = $GLOBALS['DB']->query("SELECT * from cuisines ORDER BY type;");
             $cuisines = array();
             foreach($returned_cuisines as $cuisine) {
                 $type = $cuisine['type'];
