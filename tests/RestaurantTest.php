@@ -155,5 +155,25 @@
 
             $this->assertEquals($cuisine_id, $result);
         }
+
+        function test_updateName()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Pok Pok";
+            $phone = "555-456-2345";
+            $address = "123 abcd street";
+            $website = "http://www.helloworld.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+            $new_name = "Whiskey Soda Lounge";
+
+            $test_Restaurant->updateName();
+
+            $this->assertEquals($new_name, $test_Restaurant->getName());
+        }
     }
 ?>
