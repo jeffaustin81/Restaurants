@@ -35,6 +35,7 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getId()};");
         }
 
         function update($new_type)

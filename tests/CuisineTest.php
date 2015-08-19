@@ -119,16 +119,36 @@
         {
             $type = "Mexican";
             $id = null;
-            $test_cuisine = new Cuisine($type, $id);
-            $test_cuisine->save();
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
 
             $type2 = "Italian";
-            $test_cuisine2 = new Cuisine($type2, $id);
-            $test_cuisine2->save();
+            $test_Cuisine2 = new Cuisine($type2, $id);
+            $test_Cuisine2->save();
 
-            $test_cuisine->delete();
+            $test_Cuisine->delete();
 
-            $this->assertEquals([$test_cuisine2], Cuisine::getAll());
+            $this->assertEquals([$test_Cuisine2], Cuisine::getAll());
+        }
+
+        function test_deleteCuisineRestaurants()
+        {
+            $type = "Mexican";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $name = "Por Que No";
+            $phone = "555-555-5555";
+            $address = "123 ABC street";
+            $website = "http://www.porqueno.com";
+            $cuisine_id = $test_Cuisine->getId();
+            $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
+            $test_Restaurant->save();
+
+            $test_Cuisine->delete();
+
+            $this->assertEquals([], Restaurant::getAll());
         }
     }
  ?>
