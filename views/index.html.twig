@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Restaurants</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Restaurant Database</h1>
+
+        {% if cuisines is not empty %}
+            <h3>List of all cuisine types:</h3>
+            <h6>Click on a cuisine to see all restaurants of that cuisine</h6>
+            <ul>
+                {% for cuisine in cuisines %}
+                    <li><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getType }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>There are no cuisines entered yet!</h3>
+        {% endif %}
+
+        <form action="/form_cuisine">
+            <button type="submit" class="btn btn-info">Add new cuisine</button>
+        </form>
+
+        {% if form_check == true %}
+            <form action="/add_cuisine" method="post">
+                <div class="form-group">
+                    <label for="type">Enter a new cuisine type</label>
+                    <input id="type" name="type" class="form-control" type="text" placeholder="Cuisine Type">
+                </div>
+                <button type="submit" class="btn btn-success">Add cuisine</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

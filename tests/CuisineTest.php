@@ -110,7 +110,7 @@
 
             $new_type = "Italian";
 
-            $test_Cuisine->update($new_type);
+            $test_Cuisine->update_cuisine($new_type);
 
             $this->assertEquals("Italian", $test_Cuisine->getType());
         }
@@ -126,7 +126,7 @@
             $test_Cuisine2 = new Cuisine($type2, $id);
             $test_Cuisine2->save();
 
-            $test_Cuisine->delete();
+            $test_Cuisine->delete_cuisine();
 
             $this->assertEquals([$test_Cuisine2], Cuisine::getAll());
         }
@@ -146,9 +146,27 @@
             $test_Restaurant = new Restaurant($name, $id, $phone, $address, $website, $cuisine_id);
             $test_Restaurant->save();
 
-            $test_Cuisine->delete();
+            $test_Cuisine->delete_cuisine();
 
             $this->assertEquals([], Restaurant::getAll());
+        }
+
+        function testGetRestaurants()
+        {
+            $type = "Thai";
+            $id = null;
+            $test_Cuisine = new Cuisine($type, $id);
+            $test_Cuisine->save();
+
+            $test_Restaurant = new Restaurant("Pok Pok", $id, "555-456-2345", "123 abcd street", "http://www.helloworld.com", $test_Cuisine->getId());
+            $test_Restaurant->save();
+
+            $test_Restaurant2 = new Restaurant("Whiskey Soda Lounge", $id, "555-555-5555", "678 DEF street", "http://www.pokpok.com", $test_Cuisine->getId());
+            $test_Restaurant2->save();
+
+            $result = $test_Cuisine->getRestaurants();
+
+            $this->assertEquals([$test_Restaurant, $test_Restaurant2], $result);
         }
     }
  ?>
