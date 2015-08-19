@@ -16,7 +16,10 @@
             return $this->type;
         }
 
-
+        function getId()
+        {
+            return $this->id;
+        }
 
 
         function save()
