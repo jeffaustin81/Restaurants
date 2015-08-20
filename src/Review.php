@@ -22,6 +22,26 @@
             return $this->name;
         }
 
+        function getId()
+        {
+            return $this->id;
+        }
+
+        function getRating()
+        {
+            return $this->rating;
+        }
+
+        function getReviewText()
+        {
+            return $this->review_text;
+        }
+
+        function getRestaurantId()
+        {
+            return $this->restaurant_id;
+        }
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM reviews;");
