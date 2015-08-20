@@ -164,7 +164,6 @@
             $test_Cuisine->save();
 
             $type2 = "Bar";
-            $id = null;
             $test_Cuisine2 = new Cuisine($type2, $id);
             $test_Cuisine2->save();
 

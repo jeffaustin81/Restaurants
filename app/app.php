@@ -63,7 +63,37 @@
 
         $cuisine = Cuisine::find($cuisine_id);
         return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants(), 'form_check' => false));
-    });         
+    });
+
+    $app->get("/restaurants/{id}", function($id) use ($app) {
+        $restaurant = Restaurant::find($id);
+
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'form_check' => false));
+    });
+
+    $app->get("/form_restaurant_update", function() use ($app) {
+        $restaurant = Restaurant::find($_GET['restaurant_id']);
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'form_check' => true));
+    });
+
+    $app->patch("/update_restaurant", function() use ($app) {
+        $name = $_POST['name'];
+        $restaurant_id = $_POST['restaurant_id'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $website = $_POST['website'];
+        $cuisine_id = $_POST['cuisine_id'];
+
+        $restaurant = Restaurant::find($restaurant_id);
+        var_dump($restaurant);
+        $restaurant->update_restaurant($name, $restaurant_id, $phone, $address, $website, $cuisine_id);
+        $result = Restaurant::find($restaurant_id);
+        var_dump($result);
+
+
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'form_check' => false));
+    });
+
 
     return $app;
 ?>

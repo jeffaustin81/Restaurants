@@ -87,7 +87,7 @@
 
         function update_restaurant($new_name, $id, $new_phone, $new_address, $new_website, $new_cuisine_id)
         {
-            $GLOBALS['DB']->exec("UPDATE restaurants SET name = '{new_name}', phone = '{new_phone}', address = '{new_address}', website = '{new_website}', cuisine_id = {new_cuisine_id} WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("UPDATE restaurants SET name = '{$new_name}', phone = '{$new_phone}', address = '{$new_address}', website = '{$new_website}', cuisine_id = {$new_cuisine_id} WHERE id = $id;");
             $this->setName($new_name);
             $this->setPhone($new_phone);
             $this->setAddress($new_address);
@@ -116,6 +116,32 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");
+        }
+
+        static function find($search_id)
+        {
+            $found_restaurant = null;
+            $restaurants = Restaurant::getAll();
+            foreach($restaurants as $restaurant) {
+                $restaurant_id = $restaurant->getId();
+                if ($restaurant_id == $search_id) {
+                    $found_restaurant = $restaurant;
+                }
+            }
+            return $found_restaurant;
+        }
+
+        static function find_restaurant($search_id)
+        {
+            $found_restaurant = array();
+            $restaurants = Restaurant::getAll();
+            foreach($restaurants as $restaurant) {
+                $restaurant_id = $restaurant->getId();
+                if ($restaurant_id == $search_id) {
+                    $found_restaurant = array($restaurant->getName(), $restaurant_id, $restaurant->getPhone(), $restaurant->getAddress(), $restaurant->getWebsite(), $restaurant->getCategoryId());
+                }
+            }
+            return $found_restaurant;
         }
     }
  ?>

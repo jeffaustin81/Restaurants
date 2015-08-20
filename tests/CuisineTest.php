@@ -68,7 +68,7 @@
 
             $result = Cuisine::getAll();
 
-            $this->assertEquals([$test_Cuisine, $test_Cuisine2], $result);
+            $this->assertEquals([$test_Cuisine2, $test_Cuisine], $result);
         }
 
         function test_deleteAll()

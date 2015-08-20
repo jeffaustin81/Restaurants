@@ -77,6 +77,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM cuisines;");
+            $GLOBALS['DB']->exec("DELETE FROM restaurants;");
         }
 
         static function find($search_id)
