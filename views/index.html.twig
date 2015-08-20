@@ -12,7 +12,7 @@
             <h6>Click on a cuisine to see all restaurants of that cuisine</h6>
             <ul>
                 {% for cuisine in cuisines %}
-                    <li><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getType }}</a></li>
+                    <li><h4><strong><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getType }}</a></strong></h4></li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -27,7 +27,7 @@
             <form action="/add_cuisine" method="post">
                 <div class="form-group">
                     <label for="type">Enter a new cuisine type</label>
-                    <input id="type" name="type" class="form-control" type="text" placeholder="Cuisine Type">
+                    <input id="type" name="type" class="form-control" type="text" placeholder="Cuisine Type" required>
                 </div>
                 <button type="submit" class="btn btn-success">Add cuisine</button>
             </form>
