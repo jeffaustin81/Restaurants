@@ -3,6 +3,7 @@
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/Cuisine.php";
     require_once __DIR__."/../src/Restaurant.php";
+    require_once __DIR__."/../src/Review.php";
 
     $app = new Silex\Application();
     $app['debug'] = true;
