@@ -73,7 +73,8 @@
 
     $app->get("/form_restaurant_update", function() use ($app) {
         $restaurant = Restaurant::find($_GET['restaurant_id']);
-        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'form_check' => true));
+        $cuisines = Cuisine::getAll();
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'form_check' => true, 'cuisines' => $cuisines));
     });
 
     $app->patch("/update_restaurant", function() use ($app) {
@@ -85,11 +86,7 @@
         $cuisine_id = $_POST['cuisine_id'];
 
         $restaurant = Restaurant::find($restaurant_id);
-        var_dump($restaurant);
         $restaurant->update_restaurant($name, $restaurant_id, $phone, $address, $website, $cuisine_id);
-        $result = Restaurant::find($restaurant_id);
-        var_dump($result);
-
 
         return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'form_check' => false));
     });

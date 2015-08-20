@@ -22,7 +22,7 @@
                 <form action="/update_restaurant" method="post">
                     <input name="_method" type="hidden" value="patch">
                     <input id="restaurant_id" name="restaurant_id" type="hidden" value="{{ restaurant.getId }}">
-                    <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ restaurant.getCuisineId }}">
+                    {#<input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ restaurant.getCuisineId }}">#}
 
                     <h4>Enter updated information about the restaurant</h4>
                     <div class="form-group">
@@ -41,9 +41,20 @@
                         <label for="website">Website</label>
                         <input id="website" name="website" class="form-control" type="text" placeholder="Restaurant URL" value="{{ restaurant.getWebsite }}">
                     </div>
+                    <label for = "cuisine_id">Type of Cuisine</label>
+                    <select class="form-control" id="cuisine_id" name="cuisine_id" value="{{ restaurant.getCuisineId }}">
+                        {% for cuisine in cuisines %}
+                            {% if restaurant.getCuisineId == cuisine.getId %}
+                                <option value="{{ cuisine.getId }}" selected>{{ cuisine.getType }}</option>
+                            {% else %}
+                                <option value="{{ cuisine.getId }}">{{ cuisine.getType }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <br>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
-            {% endif %} 
+            {% endif %}
             <form action="/">
                 <button type="submit" class="btn btn-primary">Home</button>
             </form>
